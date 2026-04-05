@@ -17,12 +17,17 @@ const {
   image = await Astro.slots.render('image'),
   isReversed = false,
   isAfterContent = false,
+  /** ItemGrid を中央揃え（アイコン上・見出し・本文を縦に） */
+  itemsCentered = false,
 
   id,
   isDark = false,
   classes = {},
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
+
+const hasImage =
+  typeof image === 'string' ? image.trim().length > 0 : Boolean(image);
 ---
 
 <WidgetWrapper
@@ -43,7 +48,7 @@ const {
   />
   <div class="mx-auto max-w-7xl p-4 md:px-8">
     <div class={`md:flex ${isReversed ? 'md:flex-row-reverse' : ''} md:gap-16`}>
-      <div class="md:basis-1/2 self-center">
+      <div class:list={['self-center', hasImage ? 'md:basis-1/2' : 'w-full']}>
         {content && <div class="mb-12 text-lg dark:text-slate-400" set:html={content} />}
 
         {
@@ -57,20 +62,25 @@ const {
         <ItemGrid
           items={items}
           columns={columns}
+          variant={itemsCentered ? 'centered' : 'default'}
           defaultIcon="tabler:check"
           classes={{
-            container: `gap-y-4 md:gap-y-8`,
+            container: itemsCentered ? 'gap-y-10 md:gap-y-12' : `gap-y-4 md:gap-y-8`,
             panel: 'max-w-none',
-            title: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
-            description: 'text-muted dark:text-slate-400 ml-2 rtl:ml-0 rtl:mr-2',
+            title: itemsCentered
+              ? 'text-lg font-medium leading-6 dark:text-white'
+              : 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
+            description: itemsCentered
+              ? 'text-muted dark:text-slate-400'
+              : 'text-muted dark:text-slate-400 ml-2 rtl:ml-0 rtl:mr-2',
             icon: 'flex h-7 w-7 items-center justify-center rounded-full bg-green-600 dark:bg-green-700 text-gray-50 p-1',
             action: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
           }}
         />
       </div>
-      <div aria-hidden="true" class="mt-10 md:mt-0 md:basis-1/2">
-        {
-          image && (
+      {
+        hasImage && (
+          <div aria-hidden="true" class="mt-10 md:mt-0 md:basis-1/2">
             <div class="relative m-auto max-w-4xl">
               {typeof image === 'string' ? (
                 <Fragment set:html={image} />
@@ -86,9 +96,9 @@ const {
                 />
               )}
             </div>
-          )
-        }
-      </div>
+          </div>
+        )
+      }
     </div>
   </div>
 </WidgetWrapper>

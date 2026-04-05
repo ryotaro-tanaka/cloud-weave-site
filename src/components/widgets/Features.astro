@@ -12,6 +12,8 @@ const {
   columns = 2,
 
   defaultIcon,
+  /** ItemGrid のレイアウト。centered で本文・ボタンを中央寄せ（Known / Feedback など） */
+  itemsVariant = 'default',
 
   id,
   isDark = false,
@@ -25,9 +27,10 @@ const {
   <ItemGrid
     items={items}
     columns={columns}
+    variant={itemsVariant}
     defaultIcon={defaultIcon}
     classes={{
-      container: '',
+      container: itemsVariant === 'centered' ? 'justify-items-center' : '',
       title: 'md:text-[1.3rem]',
       icon: 'text-white bg-primary rounded-full w-10 h-10 p-2 md:w-12 md:h-12 md:p-3 mr-4 rtl:ml-4 rtl:mr-0',
       ...((classes?.items as Record<string, never>) ?? {}),

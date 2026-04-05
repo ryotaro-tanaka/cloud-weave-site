@@ -133,6 +133,7 @@ export interface Stat {
 }
 
 export interface Item {
+  id?: string;
   title?: string;
   description?: string;
   icon?: string;
@@ -247,6 +248,7 @@ export interface Features extends Omit<Headline, 'classes'>, Widget {
   items?: Array<Item>;
   columns?: number;
   defaultIcon?: string;
+  itemsVariant?: 'default' | 'centered';
   callToAction1?: CallToAction;
   callToAction2?: CallToAction;
   isReversed?: boolean;
@@ -276,6 +278,8 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
   isReversed?: boolean;
   isAfterContent?: boolean;
   callToAction?: CallToAction;
+  /** ItemGrid を中央揃えレイアウトにする */
+  itemsCentered?: boolean;
 }
 
 export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}

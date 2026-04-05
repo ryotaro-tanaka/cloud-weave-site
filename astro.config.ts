@@ -16,8 +16,6 @@ import astrowind from './vendor/integration';
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repo = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'cloud-weave-site';
-const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
 
 const hasExternalScripts = false;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
@@ -25,8 +23,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   output: 'static',
-  site: 'https://ryotaro-tanaka.github.io',
-  base: isGitHubPages ? `/${repo}` : '/',
+  // `site` / `base` は Astrowind 統合が `src/config.yaml` から上書きする（GitHub Pages のプロジェクトサイトは base をリポジトリ名に合わせる）
 
   integrations: [
     tailwind({

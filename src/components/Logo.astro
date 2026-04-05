@@ -1,9 +1,11 @@
 ---
-import { SITE } from 'astrowind:config';
+import { getAsset } from '~/utils/permalinks';
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
->
-  🚀 {SITE?.name}
-</span>
+<img
+  src={getAsset('/images/cloud-weave-lockup.png')}
+  alt="Cloud Weave"
+  class="h-8 md:h-9 w-auto self-center"
+  loading="eager"
+  decoding="async"
+/>

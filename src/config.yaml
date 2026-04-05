@@ -1,8 +1,10 @@
+# GitHub Pages project sites use /repo-name/ as root; user/org pages use base: '/'
 site:
   name: Cloud Weave
   site: 'https://ryotaro-tanaka.github.io'
-  base: '/'
-  trailingSlash: false
+  base: '/cloud-weave-site'
+  # Align /base vs /base/ in dev; trailing slash matches common GitHub Pages project URLs
+  trailingSlash: true
 
   googleSiteVerificationId: null
 
@@ -11,7 +13,7 @@ metadata:
   title:
     default: Cloud Weave
     template: '%s'
-  description: 'Cloud Weave オープンベータのダウンロードと既知の制限、フィードバック導線をまとめたリリースページです。'
+  description: 'Bring multiple cloud drives into one Windows workspace. Free open beta download, known limitations, and feedback.'
   robots:
     index: true
     follow: true
@@ -29,7 +31,7 @@ metadata:
     cardType: summary_large_image
 
 i18n:
-  language: ja
+  language: en
   textDirection: ltr
 
 apps:

@@ -1,26 +1,22 @@
-import { getPermalink } from './utils/permalinks';
-
+/** In-page anchors use relative `#…` (avoid `getPermalink('/#…')` with trailingSlash—it can break the fragment). */
 export const headerData = {
   links: [
-    { text: 'What is Cloud Weave', href: getPermalink('/#what-is-cloud-weave') },
-    { text: 'Download', href: getPermalink('/#windows-beta-download') },
-    { text: 'Known limitations', href: getPermalink('/#known-limitations') },
-    { text: 'Feedback', href: getPermalink('/#feedback') },
+    { text: 'Download', href: '#hero' },
+    { text: 'Why Cloud Weave', href: '#why-cloud-weave' },
+    { text: 'Known Limitations', href: '#known-limitations' },
+    { text: 'Feedback', href: '#feedback' },
+    { text: 'Support', href: '#support-development' },
   ],
-  actions: [
-    {
-      text: 'Download latest beta',
-      href: 'https://github.com/ryotaro-tanaka/cloud-weave-site/releases/latest',
-      target: '_blank',
-    },
-  ],
+  actions: [],
 };
 
 export const footerData = {
   links: [],
   secondaryLinks: [],
   socialLinks: [
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/ryotaro-tanaka/cloud-weave-site' },
+    { ariaLabel: 'X', href: 'https://x.com/tanakar_dev', icon: 'tabler:brand-x' },
+    { ariaLabel: 'Threads', href: 'https://www.threads.com/@ryo.dev.studio', icon: 'tabler:brand-threads' },
+    { ariaLabel: 'GitHub', href: 'https://github.com/ryotaro-tanaka', icon: 'tabler:brand-github' },
   ],
-  footNote: `Cloud Weave open beta for Windows.`,
+  footNote: `Made by ryotaro-tanaka · All rights reserved.`,
 };

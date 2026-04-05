@@ -1,15 +1,19 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
+import { getAsset } from '~/utils/permalinks';
+
 import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
-import Features from '~/components/widgets/Features.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Button from '~/components/ui/Button.astro';
 
 const metadata = {
-  title: 'Cloud Weave | Windows Beta Download',
+  title: 'Cloud Weave | Download for Windows',
   ignoreTitleTemplate: true,
-  description: 'Cloud Weave オープンベータのダウンロードと既知の制限、フィードバック導線をまとめたリリースページです。',
+  description:
+    'Bring multiple cloud drives into one Windows workspace. Free open beta download, known limitations, and feedback.',
   // TODO: Set canonical URL when production URL is fixed
 };
 ---
@@ -17,126 +21,100 @@ const metadata = {
 <Layout metadata={metadata}>
   <Hero
     id="hero"
-    tagline="Cloud Weave Open Beta"
     actions={[
       {
         variant: 'primary',
-        text: 'Download latest beta',
-        href: 'https://github.com/ryotaro-tanaka/cloud-weave-site/releases/latest',
+        text: 'Download',
+        href: 'https://github.com/ryotaro-tanaka/cloud-weave-site/releases/download/v0.3.0/cloud-weave_0.3.0_x64-setup.zip',
         target: '_blank',
         icon: 'tabler:download',
       },
     ]}
   >
-    <Fragment slot="title">Windows向けオープンベータを公開中</Fragment>
+    <Fragment slot="title">Multiple clouds, one screen—<br />without losing track of where files live.</Fragment>
     <Fragment slot="subtitle">
-      Cloud Weave は、ローカルとクラウドのファイル操作を滑らかに扱うための Windows 向けデスクトップアプリです。
-      <br />
-      リリースページの Assets から Windows インストーラーを選択してください。
+      Free open beta for Windows. Work across multiple cloud storage accounts in a single workspace.
+    </Fragment>
+    <Fragment slot="content">
+      <div class="text-sm text-muted mt-4 dark:text-slate-400">
+        Unzip the download and run the installer. Windows 10 or later, 64-bit.
+      </div>
     </Fragment>
     <Fragment slot="image">
-      <img src="/images/cloud-weave-lockup.png" alt="Cloud Weave lockup" class="mx-auto rounded-md w-full max-w-3xl" />
+      <img
+        src={getAsset('/images/Screenshot.png')}
+        alt="Cloud Weave main window"
+        class="mx-auto w-full max-w-5xl rounded-lg shadow-lg"
+      />
     </Fragment>
   </Hero>
 
   <Content
-    id="what-is-cloud-weave"
-    tagline="What is Cloud Weave"
-    title="何のアプリか"
+    id="why-cloud-weave"
+    title="Why Cloud Weave"
+    columns={1}
     items={[
       {
-        title: '複数ストレージをまたぐワークスペース',
-        description: '複数の保存先をまたいだファイル閲覧・整理・転送を、1つの画面で扱えるように設計しています。',
+        title: 'One screen for every cloud',
+        description:
+          'Stop juggling separate apps or browser tabs—work from a single view.',
       },
       {
-        title: 'Windows デスクトップ向けの操作感',
-        description: '日常的なファイル操作を迷いなく進められるよう、Windowsアプリとしての使い勝手を重視しています。',
+        title: 'Find files by intent, not path',
+        description:
+          'Jump to Recent, Documents, Photos, and more—without walking the folder tree every time.',
       },
       {
-        title: '今後も改善予定のオープンベータ',
-        description: '現時点の使用感をベースに、安定性やメッセージ品質などを段階的に改善していきます。',
+        title: 'Always know where things are',
+        description:
+          'Even in a unified view, you can see which account and location a file belongs to.',
+      },
+      {
+        title: 'Free to use',
+        description:
+          "The app is free—there's no paid tier. It's built so you can use the free space you already have across providers without picking a folder for every upload.",
       },
     ]}
   >
     <Fragment slot="content">
-      Cloud Weave は、複数のストレージをまたいだファイル閲覧・整理・転送を、1つのワークスペースで扱えるように設計しています。
-    </Fragment>
-    <Fragment slot="image">
-      <img src="/images/Screenshot.png" alt="Cloud Weave main window" class="mx-auto w-full rounded-lg bg-gray-500 shadow-lg" />
+      Cloud Weave goes beyond treating clouds as separate folders—it connects how you search, organize, and place files.
     </Fragment>
   </Content>
 
-  <CallToAction
-    id="windows-beta-download"
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Download latest beta',
-        href: 'https://github.com/ryotaro-tanaka/cloud-weave-site/releases/latest',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-    ]}
-  >
-    <Fragment slot="tagline">Windows beta download</Fragment>
-    <Fragment slot="title">最新のオープンベータは GitHub Releases から取得できます。</Fragment>
-  </CallToAction>
+  <WidgetWrapper id="known-limitations" containerClass="max-w-5xl">
+    <Headline
+      title="Known Limitations"
+      subtitle="This is an open beta—features and the UI may change as we ship updates.<br /><br />Some settings might not carry over to future releases."
+    />
+  </WidgetWrapper>
 
-  <Features
-    id="known-limitations"
-    tagline="Known limitations"
-    title="Known limitations"
-    columns={1}
-    items={[
-      { title: 'Open beta のため、仕様や UI が予告なく変更される可能性があります。' },
-      { title: '一部ストレージ連携は段階的提供で、利用できない機能があります。' },
-      { title: '大容量ファイル転送時はネットワーク状況により処理時間が大きく変動します。' },
-      { title: 'エラー時のメッセージや復旧フローは改善中です。' },
-      { title: '正式版まで後方互換性を保証しない設定項目があります。' },
-    ]}
-    classes={{
-      items: {
-        icon: 'text-white bg-primary rounded-full w-8 h-8 p-1.5 mr-3 rtl:ml-3 rtl:mr-0',
-      },
-    }}
-  />
-
-  <Features
-    id="feedback"
-    tagline="Feedback"
-    title="Feedback"
-    columns={1}
-    items={[
-      {
-        title: '不具合報告や改善提案は GitHub Issues へお願いします。',
-        description: '再現手順やスクリーンショットがあると助かります。',
-        callToAction: {
-          text: 'Open Issues',
-          href: 'https://github.com/ryotaro-tanaka/cloud-weave-site/issues',
-          target: '_blank',
-          variant: 'link',
-        },
-      },
-    ]}
-  />
-
-  <section class="relative not-prose">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 md:py-14">
-      <div class="max-w-3xl mx-auto text-center p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600">
-        <p class="text-sm text-secondary dark:text-blue-200 font-bold tracking-wide uppercase">Support development</p>
-        <h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tighter font-heading">Support development</h2>
-        <p class="mt-3 text-lg text-muted dark:text-slate-400">
-          開発の継続を応援いただける場合は、Ko-fi から tip を送れます。小さな支援でも大きな励みになります。
-        </p>
-        <!-- TODO: Replace with real Ko-fi user ID -->
-        <div class="mt-6 inline-block rounded-md border border-gray-200 dark:border-slate-600 p-3">
-          <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"></script>
-          <script type="text/javascript">
-            kofiwidget2.init('Support Cloud Weave', '#2563eb', 'TODO_KOFI_USER_ID');
-            kofiwidget2.draw();
-          </script>
-        </div>
-      </div>
+  <WidgetWrapper id="feedback" containerClass="max-w-5xl">
+    <Headline
+      title="Feedback"
+      subtitle="Found a bug or have an idea? Send it through the form below.<br /><br />If you can, attach the diagnostic ZIP exported from the app—it makes investigations much easier."
+    />
+    <div class="flex justify-center">
+      <Button
+        variant="secondary"
+        text="Open feedback form"
+        href="https://usebasin.com/form/37c12519bb6c/hosted/46b7f138fca3"
+        target="_blank"
+        icon="tabler:message"
+      />
     </div>
-  </section>
+  </WidgetWrapper>
+
+  <WidgetWrapper id="support-development" containerClass="max-w-5xl">
+    <Headline
+      title="Support the project"
+      subtitle="If Cloud Weave is useful to you, a small tip on Ko-fi goes a long way."
+    />
+    <div class="flex justify-center">
+      <script type="text/javascript" src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"></script>
+      <script type="text/javascript">
+        kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'T6T51X3Q4V');
+        kofiwidget2.draw();
+      </script>
+    </div>
+  </WidgetWrapper>
 </Layout>
