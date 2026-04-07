@@ -194,6 +194,7 @@ export interface ItemGrid {
   items?: Array<Item>;
   columns?: number;
   defaultIcon?: string;
+  variant?: 'default' | 'centered';
   classes?: Record<string, string>;
 }
 

@@ -4,13 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import Button from './Button.astro';
 import { Icon } from 'astro-icon/components';
 
-const {
-  items = [],
-  columns,
-  defaultIcon = '',
-  classes = {},
-  variant = 'default',
-} = Astro.props;
+const { items = [], columns, defaultIcon = '', classes = {}, variant = 'default' } = Astro.props;
 
 const {
   container: containerClass = '',
@@ -55,14 +49,9 @@ const {
               )}
             >
               {(icon || defaultIcon) && (
-                <Icon
-                  name={icon || defaultIcon}
-                  class={twMerge('w-7 h-7 mb-3', defaultIconClass, itemClasses?.icon)}
-                />
+                <Icon name={icon || defaultIcon} class={twMerge('w-7 h-7 mb-3', defaultIconClass, itemClasses?.icon)} />
               )}
-              {title && (
-                <h3 class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)}>{title}</h3>
-              )}
+              {title && <h3 class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)}>{title}</h3>}
               {description && (
                 <p
                   class={twMerge(`${title ? 'mt-3' : ''} text-muted`, descriptionClass, itemClasses?.description)}
